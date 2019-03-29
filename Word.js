@@ -1,6 +1,6 @@
 //dependent on letter.js 
 var Letters = require("./Letter");
-
+console.log("This is loaded.");
 //Word constructor
 function Word(wordArr) {
     this.wordArr = wordArr;
