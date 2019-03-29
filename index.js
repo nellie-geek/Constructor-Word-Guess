@@ -50,9 +50,9 @@ function promptUser(){
 
 function checkAnswer(data) {
     if ((data.letter.length === 1) && /^[a-zA-Z]+$/.test(data.letter)) {
-        var check = data.letter.toUpperCase();
+        var check = data.letter;
         gameWord.checkGuess(check);
-        if (checkGuess === gameWord.showWord()) {
+        if (check === gameWord.showWord()) {
             console.log("\nNope, not in this name.\n");
             counter++ ; 
             console.log((10 - counter) + " guesses remaining");
