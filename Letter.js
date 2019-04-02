@@ -18,5 +18,5 @@ function Letters(letter) {
         }
     }
 }
-console.log("This works.");
+
 module.exports = Letters;

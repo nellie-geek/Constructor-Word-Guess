@@ -1,7 +1,7 @@
 var Word = require("./Word");
 var inquirer = require("inquirer");
 
-wordList = ["Zeus", "Ares", "Hermes", "Poseidon", "Dionysus", "Apollo", "Helios", "Prometheus", "Cronus", "Atlas", "Athena", "Artemis", "Priapus"];
+wordList = ["ZEUS", "ARES", "HERMES", "POSEIDON", "DIONYSUS", "APOLLO", "HELIOS", "PROMETHUS", "CRONUS", "ATLAS", "ATHENA", "ARTEMIS", "PRIAPUS"];
 var choice = 0;
 var chosenWord = "";
 var gameWord = "";
@@ -17,10 +17,10 @@ function startGame() {
     chosenWord = wordList[choice];
     gameWord = new Word(chosenWord);
     gameWord.makeWord();
-    if (choice > 0) {
+    if (choice > -1) {
         wordList.splice(choice, 1);
     }
-    console.log("\nYou get 10 letter guesses to spell the Ancient Greek God's name.\n")
+    console.log("\n\nYou get 10 letter guesses to spell the Ancient Greek God's name.\n\n")
     promptUser();
 }
 
@@ -32,13 +32,13 @@ function promptUser(){
             {
                 tpye: "input",
                 name: "letter",
-                message: "\nType a letter and press enter.\n"
+                message: "\n\nType a letter and press enter.\n\n"
             }
         ]).then(function(data) {
             checkAnswer(data);
         });
     } else {
-        console.log("\n Out of guesses, try again.\n");
+        console.log("\n\n Out of guesses, try again.\n\n");
         console.log(chosenWord);
         chosenWord = "";
         gameWord = "";
@@ -50,10 +50,12 @@ function promptUser(){
 
 function checkAnswer(data) {
     if ((data.letter.length === 1) && /^[a-zA-Z]+$/.test(data.letter)) {
-        var check = data.letter;
+        var check = data.letter.toUpperCase();
         gameWord.checkGuess(check);
-        if (check === gameWord.showWord()) {
-            console.log("\nNope, not in this name.\n");
+        if (!gameWord.checkWord.includes(check)) {
+            console.log("\n\nINCORRECT!");
+            // console.log("To check:"+ check);
+            // console.log("This is word" + gameWord.checkWord);
             counter++ ; 
             console.log((10 - counter) + " guesses remaining");
             promptUser();
@@ -61,16 +63,16 @@ function checkAnswer(data) {
             correctGuess();
         }
     } else {
-        console.log("\n Please enter a letter, one at a time.");
+        console.log("\n\nPlease enter a letter, one at a time.\n\n");
         promptUser();
     }
 }
 
 function correctGuess() {
-    console.log("\nYou guessed correctly.\n");
+    console.log("\n\nCORRECT! :)\n");
     if (chosenWord.replace(/ /g, "") === (gameWord.showWord()).replace(/ /g,"")) {
         console.log(gameWord.showWord());
-        console.log("\nYou Win!");
+        console.log("\n\nYou Win!\n\n");
         chosenWord = " ";
         gameWord = " ";
         choice = 0;

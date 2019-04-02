@@ -1,14 +1,16 @@
 //dependent on letter.js 
 var Letters = require("./Letter");
-console.log("This is loaded.");
+
 //Word constructor
 function Word(wordArr) {
     this.wordArr = wordArr;
     this.guessWord = [];
+    this.checkWord = [];
     this.makeWord = function() {
         for (var i = 0; i < wordArr.length; i++) {
             var letter = new Letters(wordArr[i]);
             this.guessWord.push(letter);
+            this.checkWord.push(letter.letter);
         }
     }
     this.showWord = function() {
