@@ -1,6 +1,6 @@
 var Word = require("./Word");
 var inquirer = require("inquirer");
-
+var colors = require("colors");
 wordList = ["ZEUS", "ARES", "HERMES", "POSEIDON", "DIONYSUS", "APOLLO", "HELIOS", "PROMETHUS", "CRONUS", "ATLAS", "ATHENA", "ARTEMIS", "PRIAPUS"];
 var choice = 0;
 var chosenWord = "";
@@ -38,7 +38,7 @@ function promptUser(){
             checkAnswer(data);
         });
     } else {
-        console.log("\n\n Out of guesses, try again.\n\n");
+        console.log("\n\n Out of guesses, try again.\n\n".red);
         console.log(chosenWord);
         chosenWord = "";
         gameWord = "";
@@ -53,7 +53,7 @@ function checkAnswer(data) {
         var check = data.letter.toUpperCase();
         gameWord.checkGuess(check);
         if (!gameWord.checkWord.includes(check)) {
-            console.log("\n\nINCORRECT!");
+            console.log("\n\nINCORRECT!".red);
             // console.log("To check:"+ check);
             // console.log("This is word" + gameWord.checkWord);
             counter++ ; 
@@ -69,10 +69,10 @@ function checkAnswer(data) {
 }
 
 function correctGuess() {
-    console.log("\n\nCORRECT! :)\n");
+    console.log("\n\nCORRECT! :)\n".green);
     if (chosenWord.replace(/ /g, "") === (gameWord.showWord()).replace(/ /g,"")) {
         console.log(gameWord.showWord());
-        console.log("\n\nYou Win!\n\n");
+        console.log("\n\nYou Win!\n\n".rainbow);
         chosenWord = " ";
         gameWord = " ";
         choice = 0;
