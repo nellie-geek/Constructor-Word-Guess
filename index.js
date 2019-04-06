@@ -1,7 +1,7 @@
 var Word = require("./Word");
 var inquirer = require("inquirer");
 var colors = require("colors");
-wordList = ["ZEUS", "ARES", "HERMES", "POSEIDON", "DIONYSUS", "APOLLO", "HELIOS", "PROMETHUS", "CRONUS", "ATLAS", "ATHENA", "ARTEMIS", "PRIAPUS"];
+wordList = ["ZEUS", "ARES", "HERMES", "POSEIDON", "DIONYSUS", "APOLLO", "HELIOS", "PROMETHEUS", "CRONUS", "ATLAS", "ATHENA", "ARTEMIS", "PRIAPUS"];
 var choice = 0;
 var chosenWord = "";
 var gameWord = "";
